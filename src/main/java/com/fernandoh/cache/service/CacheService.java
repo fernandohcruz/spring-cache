@@ -1,6 +1,6 @@
 package com.fernandoh.cache.service;
 
-import com.fernandoh.cache.model.AnyOne;
+import com.fernandoh.cache.model.Anyone;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -10,17 +10,17 @@ import java.util.Map;
 @Service
 public class CacheService {
 
-    Map<Long, AnyOne> map = new HashMap<>() {
+    Map<Long, Anyone> map = new HashMap<>() {
         {
-            put(1L, new AnyOne(1L, "Fernando"));
-            put(2L, new AnyOne(2L, "Gon"));
-            put(3L, new AnyOne(3L, "Luke"));
-            put(4L, new AnyOne(4L, "Leia"));
+            put(1L, new Anyone(1L, "Fernando"));
+            put(2L, new Anyone(2L, "Gon"));
+            put(3L, new Anyone(3L, "Luke"));
+            put(4L, new Anyone(4L, "Leia"));
         }
     };
 
     @Cacheable(value = "anything", key = "#id")
-    public AnyOne getAnyThing(Long id) {
+    public Anyone getAnyThing(Long id) {
         System.out.println("Searching anyone...");
         simulateLatency();
         return map.get(id);
